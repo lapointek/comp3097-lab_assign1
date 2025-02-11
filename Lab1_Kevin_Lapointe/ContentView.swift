@@ -19,7 +19,7 @@ func isPrime(_ n: Int) -> Bool {
 
 struct ContentView: View {
     @State private var randomNum = 0
-    
+    @State private var score = 0
     
     var body: some View {
         VStack{
