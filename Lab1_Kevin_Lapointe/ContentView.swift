@@ -20,6 +20,11 @@ func isPrime(_ n: Int) -> Bool {
 struct ContentView: View {
     @State private var randomNum = 0
     @State private var score = 0
+    @State private var isCorrect: isCorrect?
+    
+    enum isCorrect{
+        case correct, incorrect
+    }
     
     var body: some View {
         VStack{
@@ -34,13 +39,12 @@ struct ContentView: View {
                 .padding(.bottom, 200)
             HStack{
                 
-                Button(action:{
-                    if(isPrime){
-                        
-                    }
+                Button(action:{ checkAnswer(isPrime:true)
+            
                 }){
                     Text("Prime")
                         .font(.title)
+                        .background(Color.green)
                         .italic()
                 }
                 .buttonStyle(.bordered)
@@ -58,7 +62,9 @@ struct ContentView: View {
                 .buttonStyle(.bordered)
             }
         }
+        
     }
+    
 }
 
 #Preview {
