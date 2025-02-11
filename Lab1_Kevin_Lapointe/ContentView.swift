@@ -7,15 +7,42 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    @State private var randomNum = 0
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack{
+            Text("\(randomNum)")
+                .onAppear{
+                    Timer.scheduledTimer(withTimeInterval: 6.0, repeats: true){
+                        _ in randomNum = Int.random(in: 0...100)
+                    }
+                }
+                .font(.largeTitle)
+                .padding(.bottom, 200)
+            HStack{
+                Button(action:{
+                    
+                }){
+                    Text("Prime")
+                        .font(.title)
+                        .italic()
+                }
+                .buttonStyle(.bordered)
+                
+                Spacer()
+                    .frame(width:50)
+                
+                Button(action:{
+                    
+                }){
+                    Text("Not Prime")
+                        .font(.title)
+                        .italic()
+                }
+                .buttonStyle(.bordered)
+            }
         }
-        .padding()
     }
 }
 
