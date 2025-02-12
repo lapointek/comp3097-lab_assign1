@@ -58,6 +58,9 @@ struct ContentView: View {
                 .buttonStyle(.bordered)
             }
         }
+        private func displayNum(){
+            randomNum = Int.random(int:1...1000)
+        }
     
         private func checkAnswer(isPrime:Bool){
             let isPrimeNumum = isPrimeNum(randomNum)
@@ -71,7 +74,7 @@ struct ContentView: View {
             
             if attempt % 10 == 0 {
                 message = "Correct: \(correctCount), Wrong: \(wrongCount)"
-                shorResults = true
+                showResults = true
             }
         }
         }
