@@ -28,13 +28,17 @@ struct ContentView: View {
             VStack{
                 Text("\(randomNum)")
                     .font(.largeTitle)
+                    .font(.system(size:40))
+                    .foregroundColor(Color.green)
                     .padding(.bottom, 200)
+                
                 HStack{
                     Button(action:{ checkAnswer(isNumPrime:true)}){
                         Text("Prime")
                             .font(.title)
                             .italic()
                     }.buttonStyle(.bordered)
+                        .tint(Color.blue)
                     Spacer()
                         .frame(width:50)
                     Button(action:{checkAnswer(isNumPrime:false)}){
@@ -43,6 +47,7 @@ struct ContentView: View {
                         
                             .italic()
                     }.buttonStyle(.bordered)
+                        .tint(Color.blue)
                 }
                 
                 Text("Time Remaining: \(remainingTime)")
