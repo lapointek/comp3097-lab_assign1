@@ -31,17 +31,15 @@ struct ContentView: View {
                 Button(action:{ checkAnswer(isNumPrime:true)}){
                     Text("Prime")
                         .font(.title)
-                        .background(Color.green)
                         .italic()
-                }
+                }.buttonStyle(.bordered)
                 Spacer()
                     .frame(width:50)
                 Button(action:{checkAnswer(isNumPrime:false)}){
                     Text("Not Prime")
                         .font(.title)
-                        .background(Color.green)
                         .italic()
-                }
+                }.buttonStyle(.bordered)
             }
             
             Text("Time Remaining: \(remainingTime)")
@@ -60,6 +58,23 @@ struct ContentView: View {
             })
         }
     }
+    private func checkAnswer(isNumPrime:Bool){
+        let isPrime = isPrime(randomNum)
+        if isPrime == isNumPrime{
+            correctCount += 1
+        }else{
+            incorrectCount += 1
+        }
+        attempts += 1
+        remainingTime = 5
+        displayNum()
+        
+        if attempts % 10 == 0 {
+            message = "Correct: \(correctCount), Wrong: \(incorrectCount)"
+            showResults = true
+        }
+    }
+    
     private func resetGame(){
         randomNum = Int.random(in:1...500)
         correctCount = 0
@@ -88,22 +103,7 @@ struct ContentView: View {
         }
     }
     
-    private func checkAnswer(isNumPrime:Bool){
-        let isPrime = isPrime(randomNum)
-        if isPrime == isNumPrime{
-            correctCount += 1
-        }else{
-            incorrectCount += 1
-        }
-        attempts += 1
-        remainingTime = 5
-        displayNum()
-        
-        if attempts % 10 == 0 {
-            message = "Correct: \(correctCount), Wrong: \(incorrectCount)"
-            showResults = true
-        }
-    }
+    
     
     private func displayNum(){
         randomNum = Int.random(in:1...1000)
