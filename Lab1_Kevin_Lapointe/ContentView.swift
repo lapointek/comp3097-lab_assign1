@@ -22,6 +22,7 @@ struct ContentView: View {
     @State private var score = 0
     @State private var correctCount = 0
     @State private var incorrectCount = 0
+    @State private var attempts = 0
     
    
     
@@ -62,6 +63,9 @@ struct ContentView: View {
             let isPrimeNumum = isPrimeNum(randomNum)
             if isPrimeNum == isPrime{
                 correct += 1
+            }else{
+                incorrectCount += 1
+                
             }
         }
         
