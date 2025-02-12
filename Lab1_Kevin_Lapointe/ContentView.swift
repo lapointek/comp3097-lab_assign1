@@ -56,10 +56,16 @@ struct ContentView: View {
             Alert(title: Text("Results"),
                   message: Text(message),
                   dismissButton: .default(Text("OK")){
-                reset()
+                resetGame()
             })
         }
     }
+    private func resetGame(){
+        randomNum = Int.random(in:1...500)
+        
+        
+    }
+    
     private func startGame(){
         resetGame()
         startTimer()
@@ -77,6 +83,7 @@ struct ContentView: View {
                 displayNum()
             }
         }
+    }
     
     private func checkAnswer(isNumPrime:Bool){
         let isPrime = isPrime(randomNum)
