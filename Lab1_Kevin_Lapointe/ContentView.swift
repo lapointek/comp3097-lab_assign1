@@ -23,39 +23,43 @@ struct ContentView: View {
     
     
     var body: some View {
-        VStack{
-            Text("\(randomNum)")
-                .font(.largeTitle)
-                .padding(.bottom, 200)
-            HStack{
-                Button(action:{ checkAnswer(isNumPrime:true)}){
-                    Text("Prime")
-                        .font(.title)
-                        .italic()
-                }.buttonStyle(.bordered)
-                Spacer()
-                    .frame(width:50)
-                Button(action:{checkAnswer(isNumPrime:false)}){
-                    Text("Not Prime")
-                        .font(.title)
-                        .italic()
-                }.buttonStyle(.bordered)
+        ZStack{
+            Color(.systemGray6)
+            VStack{
+                Text("\(randomNum)")
+                    .font(.largeTitle)
+                    .padding(.bottom, 200)
+                HStack{
+                    Button(action:{ checkAnswer(isNumPrime:true)}){
+                        Text("Prime")
+                            .font(.title)
+                            .italic()
+                    }.buttonStyle(.bordered)
+                    Spacer()
+                        .frame(width:50)
+                    Button(action:{checkAnswer(isNumPrime:false)}){
+                        Text("Not Prime")
+                            .font(.title)
+                        
+                            .italic()
+                    }.buttonStyle(.bordered)
+                }
+                
+                Text("Time Remaining: \(remainingTime)")
+                    .font(.title)
+                    .padding()
+                if attempts > 0{
+                    Text("Correct: \(correctCount), Wrong: \(incorrectCount)")
+                }
             }
-            
-            Text("Time Remaining: \(remainingTime)")
-                .font(.title)
-                .padding()
-            if attempts > 0{
-                Text("Correct: \(correctCount), Wrong: \(incorrectCount)")
+            .onAppear(perform: startGame)
+            .alert(isPresented: $showResults){
+                Alert(title: Text("Results"),
+                      message: Text(message),
+                      dismissButton: .default(Text("OK")){
+                    resetGame()
+                })
             }
-        }
-        .onAppear(perform: startGame)
-        .alert(isPresented: $showResults){
-            Alert(title: Text("Results"),
-                  message: Text(message),
-                  dismissButton: .default(Text("OK")){
-                resetGame()
-            })
         }
     }
     private func checkAnswer(isNumPrime:Bool){
