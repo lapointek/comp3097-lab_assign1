@@ -7,15 +7,7 @@
 
 import SwiftUI
 
-func isPrime(_ n: Int) -> Bool {
-    guard n > 1 else {return false}
-    for i in 2...Int(Double(n).squareRoot()){
-        if n % i == 0{
-            return false
-        }
-    }
-    return true
-}
+
 
 struct ContentView: View {
     @State private var randomNum = 0
@@ -25,17 +17,17 @@ struct ContentView: View {
     @State private var attempts = 0
     @State private var remainingTime = 5
     @State private var showResults = false
-
-   
+    @State private var timer: Timer?
+    
+    
     
     var body: some View {
         VStack{
-            let isPrime = randomNum % 2 == 0
             Text("\(randomNum)"){
                 
-                }
-                .font(.largeTitle)
-                .padding(.bottom, 200)
+            
+            .font(.largeTitle)
+            .padding(.bottom, 200)
             HStack{
                 
                 Button(action:{ checkAnswer(isPrime:true)}){
@@ -57,11 +49,28 @@ struct ContentView: View {
                 }
                 .buttonStyle(.bordered)
             }
+        
+        Text("Time Remaining: \(timeRemaining)")
+                    .font(.title)
+                    .padding()
+                if attempts > 0{
+                    Text("Correct: ")
+                }
+        
+        func isPrime(_ n: Int) -> Bool {
+            guard n > 1 else {return false}
+            for i in 2...Int(Double(n).squareRoot()){
+                if n % i == 0{
+                    return false
+                }
+            }
+            return true
         }
+        
         private func displayNum(){
             randomNum = Int.random(int:1...1000)
         }
-    
+        
         private func checkAnswer(isPrime:Bool){
             let isPrimeNumum = isPrimeNum(randomNum)
             if isPrimeNum == isPrime{
@@ -77,10 +86,11 @@ struct ContentView: View {
                 showResults = true
             }
         }
-        }
     }
+}
+        #Preview {
+            ContentView()
+        }
     
 
-#Preview {
-    ContentView()
-}
+
