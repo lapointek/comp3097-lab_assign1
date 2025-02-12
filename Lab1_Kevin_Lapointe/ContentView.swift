@@ -25,39 +25,40 @@ struct ContentView: View {
         VStack{
             Text("\(randomNum)"){
                 
-            
-            .font(.largeTitle)
-            .padding(.bottom, 200)
-            HStack{
                 
-                Button(action:{ checkAnswer(isPrime:true)}){
-                    Text("Prime")
-                        .font(.title)
-                        .background(Color.green)
-                        .italic()
+                .font(.largeTitle)
+                .padding(.bottom, 200)
+                HStack{
+                    
+                    Button(action:{ checkAnswer(isPrime:true)}){
+                        Text("Prime")
+                            .font(.title)
+                            .background(Color.green)
+                            .italic()
+                    }
+                    .buttonStyle(.bordered)
+                    
+                    Spacer()
+                        .frame(width:50)
+                    
+                    Button(action:{checkAnswer(isPrime:false)}){
+                        Text("Not Prime")
+                            .font(.title)
+                            .background(Color.green)
+                            .italic()
+                    }
+                    .buttonStyle(.bordered)
                 }
-                .buttonStyle(.bordered)
                 
-                Spacer()
-                    .frame(width:50)
-                
-                Button(action:{checkAnswer(isPrime:false)}){
-                    Text("Not Prime")
-                        .font(.title)
-                        .background(Color.green)
-                        .italic()
-                }
-                .buttonStyle(.bordered)
-            }
-        
-        Text("Time Remaining: \(timeRemaining)")
+                Text("Time Remaining: \(remainingTime)")
                     .font(.title)
                     .padding()
                 if attempts > 0{
-                    Text("Correct: ")
+                    Text("Correct: \(correctCount), Wrong: \(incorrectCount)")
                 }
+            }
         
-        func isPrime(_ n: Int) -> Bool {
+        private func isPrime(_ n: Int) -> Bool {
             guard n > 1 else {return false}
             for i in 2...Int(Double(n).squareRoot()){
                 if n % i == 0{
