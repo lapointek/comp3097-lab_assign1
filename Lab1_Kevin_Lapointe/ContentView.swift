@@ -23,17 +23,16 @@ struct ContentView: View {
     @State private var correctCount = 0
     @State private var incorrectCount = 0
     @State private var attempts = 0
-    
+    @State private var remainingTime = 5
+    @State private var showResults = false
+
    
     
     var body: some View {
         VStack{
             let isPrime = randomNum % 2 == 0
-            Text("\(randomNum)")
-                .onAppear{
-                    Timer.scheduledTimer(withTimeInterval: 6.0, repeats: true){
-                        _ in randomNum = Int.random(in: 0...100)
-                    }
+            Text("\(randomNum)"){
+                
                 }
                 .font(.largeTitle)
                 .padding(.bottom, 200)
@@ -59,16 +58,22 @@ struct ContentView: View {
                 .buttonStyle(.bordered)
             }
         }
+    
         private func checkAnswer(isPrime:Bool){
             let isPrimeNumum = isPrimeNum(randomNum)
             if isPrimeNum == isPrime{
                 correct += 1
             }else{
                 incorrectCount += 1
-                
+            }
+            attempts += 1
+            remainingTime = 5
+            
+            if attempt % 10 == 0 {
+                message = "Correct: \(correctCount), Wrong: \(wrongCount)"
+                shorResults = true
             }
         }
-        
         }
     }
     
