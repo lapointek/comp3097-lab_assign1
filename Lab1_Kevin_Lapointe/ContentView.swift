@@ -62,7 +62,8 @@ struct ContentView: View {
     }
     private func resetGame(){
         randomNum = Int.random(in:1...500)
-        
+        correctCount = 0
+        incorrectCount = 0
         
     }
     
