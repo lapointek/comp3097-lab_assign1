@@ -20,12 +20,10 @@ func isPrime(_ n: Int) -> Bool {
 struct ContentView: View {
     @State private var randomNum = 0
     @State private var score = 0
-    @State private var isCorrect: isCorrect?
     @State private var correctCount = 0
+    @State private var incorrectCount = 0
     
-    enum isCorrect{
-        case correct, incorrect
-    }
+   
     
     var body: some View {
         VStack{
