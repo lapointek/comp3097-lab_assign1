@@ -27,10 +27,9 @@ struct ContentView: View {
             Color(.systemGray6)
             VStack{
                 Text("\(randomNum)")
-                    .font(.largeTitle)
-                    .font(.system(size:40))
+                    .font(.system(size:50,weight:.bold,design:.serif))
                     .foregroundColor(Color.green)
-                    .padding(.bottom, 200)
+                    .padding(.bottom, 150)
                 
                 HStack{
                     Button(action:{ checkAnswer(isNumPrime:true)}){
@@ -38,21 +37,22 @@ struct ContentView: View {
                             .font(.title)
                             .italic()
                     }.buttonStyle(.bordered)
-                        .tint(Color.blue)
+                        .tint(Color.green)
                     Spacer()
-                        .frame(width:50)
+                        .frame(width:40)
                     Button(action:{checkAnswer(isNumPrime:false)}){
                         Text("Not Prime")
                             .font(.title)
                         
                             .italic()
                     }.buttonStyle(.bordered)
-                        .tint(Color.blue)
+                        .tint(Color.red)
                 }
                 
                 Text("Time Remaining: \(remainingTime)")
                     .font(.title)
                     .padding()
+                
                 if attempts > 0{
                     Text("Correct: \(correctCount), Wrong: \(incorrectCount)")
                 }
@@ -111,7 +111,6 @@ struct ContentView: View {
             }
         }
     }
-    
     
     
     private func displayNum(){
