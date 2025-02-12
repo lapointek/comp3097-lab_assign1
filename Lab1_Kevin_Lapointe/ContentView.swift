@@ -21,6 +21,7 @@ struct ContentView: View {
     @State private var randomNum = 0
     @State private var score = 0
     @State private var isCorrect: isCorrect?
+
     
     enum isCorrect{
         case correct, incorrect
@@ -39,9 +40,7 @@ struct ContentView: View {
                 .padding(.bottom, 200)
             HStack{
                 
-                Button(action:{ checkAnswer(isPrime:true)
-            
-                }){
+                Button(action:{ checkAnswer(isPrime:true)}){
                     Text("Prime")
                         .font(.title)
                         .background(Color.green)
@@ -52,20 +51,25 @@ struct ContentView: View {
                 Spacer()
                     .frame(width:50)
                 
-                Button(action:{
-                    
-                }){
+                Button(action:{checkAnswer(isPrime:false)}){
                     Text("Not Prime")
                         .font(.title)
+                        .background(Color.green)
                         .italic()
                 }
                 .buttonStyle(.bordered)
             }
         }
+        private func checkAnswer(isPrime:Bool){
+            let isPrimeNumum = isPrimeNum(randomNum)
+            if isPrimeNum == isPrime{
+                correct += 1
+            }
+        }
         
+        }
     }
     
-}
 
 #Preview {
     ContentView()
