@@ -64,8 +64,10 @@ struct ContentView: View {
         randomNum = Int.random(in:1...500)
         correctCount = 0
         incorrectCount = 0
-        
-    }
+        attempts = 0
+        remainingTime = 5
+        timer?.invalidate()
+        startTimer()    }
     
     private func startGame(){
         resetGame()
