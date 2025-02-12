@@ -60,8 +60,23 @@ struct ContentView: View {
             })
         }
     }
+    private func startGame(){
+        resetGame()
+        startTimer()
+    }
     
     
+    private func startTimer(){
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true){
+            _ in remainingTime -= 1
+            
+            if remainingTime <= 0{
+                remainingTime = 5
+                attempts += 1
+                incorrectCount += 1
+                displayNum()
+            }
+        }
     
     private func checkAnswer(isNumPrime:Bool){
         let isPrime = isPrime(randomNum)
