@@ -100,7 +100,7 @@ struct ContentView: View {
     
     
     private func startTimer(){
-        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true){
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true){
             _ in remainingTime -= 1
             
             if remainingTime <= 0{
